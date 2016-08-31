@@ -13,6 +13,13 @@ config :badge_fw, :wlan0,
 config :nerves_ntp, :ntpd, "/usr/sbin/ntpd"
 config :nerves_ntp, :servers, Enum.map(0..3, &("#{&1}.pool.ntp.org"))
 
+config :extwitter, :oauth, [
+    consumer_key: "vnBfkubUmv10QRcQjFU3lXKin",
+    consumer_secret: "XUk3fsulkfraaapUyMOfnVRtd8fXdlkKMQvhjDv5nnEVrsk7yA",
+    access_token: System.get_env("TWITTER_ACCESS_TOKEN"),
+    access_token_secret: System.get_env("TWITTER_ACCESS_TOKEN_SECRET")
+  ]
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
