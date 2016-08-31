@@ -1,13 +1,18 @@
 defmodule BadgeFw do
   use Application
+  alias Nerves.InterimWiFi, as: WiFi
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    # load driver for wifi device
+    :os.cmd('modprobe mt7603e')
+
     # Define workers and child supervisors to be supervised
     children = [
+      worker(Task, [fn -> network end], restart: :transient),
       # worker(BadgeFw.Worker, [arg1, arg2, arg3]),
     ]
 
@@ -17,4 +22,8 @@ defmodule BadgeFw do
     Supervisor.start_link(children, opts)
   end
 
+  def network do
+    wlan_config = Application.get_env(:badge_fw, :wlan0)
+    WiFi.setup "wlan0", wlan_config
+  end
 end
