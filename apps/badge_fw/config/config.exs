@@ -10,6 +10,9 @@ config :badge_fw, :wlan0,
   key_mgmt: :"WPA-PSK",
   psk: "nervesnet"
 
+config :nerves_ntp, :ntpd, "/usr/sbin/ntpd"
+config :nerves_ntp, :servers, Enum.map(0..3, &("#{&1}.pool.ntp.org"))
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
