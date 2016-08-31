@@ -13,7 +13,7 @@ defmodule BadgeFw do
     # Define workers and child supervisors to be supervised
     children = [
       worker(Task, [fn -> network end], restart: :transient),
-      # worker(BadgeFw.Worker, [arg1, arg2, arg3]),
+      worker(BadgeLib.Firmata, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
