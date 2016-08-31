@@ -26,8 +26,9 @@ defmodule BadgeFw.Mixfile do
 
   def deps do
     [{:nerves, "~> 0.3.0"},
-     {:badge_lib, in_umbrella: true},
-     {:nerves_interim_wifi, "~> 0.1"}]
+     {:nerves_interim_wifi, "~> 0.1"},
+     {:nerves_ntp, "~> 0.1"},
+     {:badge_lib, in_umbrella: true}]
   end
 
   def system(target) do
